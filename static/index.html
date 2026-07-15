@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineMatch | Cinematic Experience</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-outline" id="cursorOutline"></div>
+
+    <div class="background-effects">
+        <div class="noise-overlay"></div>
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+    </div>
+
+    <nav>
+        <div class="logo">
+            <span class="logo-text">CINE<span class="highlight">MATCH</span></span>
+        </div>
+        <div class="search-wrapper">
+            <input type="text" id="searchInput" placeholder="Search the cinematic universe...">
+            <div class="search-line"></div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero-section">
+            <div class="hero-content" id="heroContent">
+                <p class="hero-overline">Welcome to the future of discovery</p>
+                <h1 class="hero-title">Experience <br/><span class="text-gradient">Cinema</span> Differently</h1>
+                <p class="hero-subtitle">Our AI-driven engine curates a bespoke selection tailored to the nuances of your taste.</p>
+                <button class="btn-explore" id="exploreBtn">Explore Collection</button>
+            </div>
+        </section>
+
+        <!-- Dynamic Recommendation Section -->
+        <section class="recommendations-section hidden" id="recommendationsSection">
+            <div class="section-header">
+                <h2>Inspired by <span id="selectedMovieName" class="highlight"></span></h2>
+                <button class="btn-clear" id="clearSelectionBtn">Clear Focus</button>
+            </div>
+            <div class="movies-grid" id="recommendationsGrid">
+                <!-- Recommended movie cards will be injected here -->
+            </div>
+        </section>
+
+        <section class="catalog-section" id="catalogSection">
+            <div class="section-header">
+                <h2>The <span class="highlight">Collection</span></h2>
+            </div>
+            
+            <div class="loader" id="loader">
+                <div class="spinner"></div>
+            </div>
+
+            <div class="movies-grid" id="moviesGrid">
+                <!-- Movie cards will be injected here -->
+            </div>
+        </section>
+    </main>
+
+    <div class="modal hidden" id="movieModal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content glass-panel">
+            <button class="close-btn" id="closeModalBtn">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <div class="modal-body" id="modalBody">
+                <!-- Modal details injected here -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Crafted for the love of film &bull; 2026 CineMatch</p>
+    </footer>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

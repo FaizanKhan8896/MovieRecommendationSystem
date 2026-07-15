@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CineMatch | Cinematic Experience</title>
+    <link rel="stylesheet" href="/static/style.css">
+    
+    <!-- Setup initial dataset for datalist -->
+    <script>
+        window.initialMovies = {{ movies_json | safe }};
+    </script>
+</head>
+<body>
+
+    <!-- Background Effects -->
+    <div class="background-effects">
+        <div class="noise-overlay"></div>
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo font-cinzel">
+            CINE<span class="highlight">MATCH</span>
+        </div>
+        <div class="search-container">
+            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="searchInput" placeholder="Search the cinematic universe..." />
+        </div>
+    </nav>
+
+    <main id="mainContent">
+        <!-- Hero Section -->
+        <section id="heroSection" class="hero-section">
+            <div class="hero-content">
+                <p class="hero-subtitle">Welcome to the future of discovery</p>
+                <h1 class="hero-title font-cinzel">Experience <br/><span class="text-gradient">Cinema</span> Differently</h1>
+                <p class="hero-description">Our AI-driven engine curates a bespoke selection tailored to the nuances of your taste.</p>
+                
+                <!-- Direct Recommend Form -->
+                <div class="recommend-form">
+                    <input type="text" id="recommendInput" list="movie-list" placeholder="Type a movie you like..." />
+                    <datalist id="movie-list">
+                        {% for movie in all_movies %}
+                            <option value="{{ movie.title }}">
+                        {% endfor %}
+                    </datalist>
+                    <button id="recommendBtn" class="font-cinzel btn-gold">RECOMMEND</button>
+                </div>
+
+                <button id="exploreBtn" class="font-cinzel btn-text">Or Explore Full Collection</button>
+            </div>
+        </section>
+
+        <!-- Recommendations Section (Hidden initially) -->
+        <section id="recommendationsSection" class="catalog-section" style="display: none;">
+            <div class="section-header">
+                <h2 class="font-cinzel section-title">Inspired by <span id="recFocusTitle" class="highlight"></span></h2>
+                <button id="clearRecBtn" class="btn-outline">Clear Focus</button>
+            </div>
+            <div id="recsLoader" class="loader" style="display: none;"><div class="spinner"></div></div>
+            <div id="recsGrid" class="movie-grid"></div>
+        </section>
+
+        <!-- Catalog Section -->
+        <section id="catalogSection" class="catalog-section">
+            <div class="section-header">
+                <h2 id="catalogTitle" class="font-cinzel section-title">The Collection</h2>
+            </div>
+            
+            <!-- Genre Filters -->
+            <div class="genre-filters" id="genreFilters">
+                <!-- Injected via JS -->
+            </div>
+            
+            <div id="catalogLoader" class="loader"><div class="spinner"></div></div>
+            <div id="catalogGrid" class="movie-grid"></div>
+        </section>
+    </main>
+
+    <footer class="font-cinzel footer">
+        Crafted for the love of film &bull; 2026 CineMatch
+    </footer>
+
+    <!-- Cinematic Modal -->
+    <div id="cinematicModal" class="modal-overlay" style="display: none;">
+        <div class="modal-backdrop" id="modalBackdrop"></div>
+        <div class="glass-panel modal-content">
+            <button id="closeModalBtn" class="close-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            
+            <div class="modal-image-container">
+                <img id="modalPoster" src="" alt="Poster" />
+                <div class="modal-image-gradient"></div>
+            </div>
+            
+            <div class="modal-details">
+                <h2 id="modalTitle" class="font-cinzel modal-title"></h2>
+                <div class="modal-meta">
+                    <span id="modalGenre"></span>
+                    <span id="modalRating"></span>
+                </div>
+                <p id="modalDesc" class="modal-desc"></p>
+                <button id="modalExploreBtn" class="modal-btn">Explore Similar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/app.js?v=2"></script>
+</body>
+</html>
